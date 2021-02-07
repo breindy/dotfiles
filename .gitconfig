@@ -2,4 +2,5 @@
 [user]
 	name = breindy
 	email = 16421165+breindy@users.noreply.github.com
-
+[commit]
+	template = ~/.gitmessage
