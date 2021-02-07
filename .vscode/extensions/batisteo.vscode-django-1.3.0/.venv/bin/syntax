@@ -1,0 +1,5 @@
+#!/home/batisteo/Projets/vscode-django/.venv/bin/python
+from syntaxes.build import main
+
+if __name__ == '__main__':
+    main()

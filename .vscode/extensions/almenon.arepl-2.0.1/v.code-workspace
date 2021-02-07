@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"mochaExplorer.files": "test/*.ts",
+		"mochaExplorer.require": "ts-node/register",
+		"mochaExplorer.ui": "tdd",
+		"python.linting.enabled": false,
+		"AREPL.pythonOptions": [
+		],
+		"python.pythonPath": "C:\\Users\\caleb\\AppData\\Local\\Programs\\Python\\Python37-32\\python.exe",
+		"AREPL.skipLandingPage": true
+	},
+}

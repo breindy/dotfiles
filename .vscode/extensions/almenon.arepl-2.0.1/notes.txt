@@ -1,0 +1,16 @@
+FOXDOT:
+sometimes takes multiple executions to play...
+p1 >> pluck(PRange(5) | PRange(5,0,-1), scale=Scale.default.pentatonic)
+
+ctrl-enter is supercollider and foxdot command to run
+so using ctrl+enter for AREPL run block command makes sense
+
+need command for stopping sound
+
+MARKETING:
+I made a VSCode extension that lets you see your variables while you write your code. Any feedback?
+
+MISC:
+https://github.com/kenhowardpdx/vscode-gist
+^ they use jest for testing
+^ also they somehow use vscode imports just fine 🤔

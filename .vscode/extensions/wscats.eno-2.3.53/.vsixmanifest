@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
+  <Metadata>
+    <Identity Language="en-US" Id="eno" Version="2.3.53" Publisher="Wscats"/>
+    <DisplayName>Sass/Less/Stylus/Pug/Jade/Typescript/Javascript Compile Hero Pro</DisplayName>
+    <Description xml:space="preserve">🚀Easy to compile ts, tsx, scss, less, stylus, jade, pug and es6+ on save without using a build task.</Description>
+    <Tags>sass,beautify,scss,typescript,ts,less,stylus,ES6,ES5,js,css,javascript,html,compile,tsx,jade,hero,close,port,pug,minified,format,formatter,formate,keybindings,json,JSON,SASS,__ext_sass,styl,__ext_styl,javascriptreact,typescriptreact</Tags>
+    <Categories>Other,Programming Languages,Snippets,Linters,Debuggers,Formatters</Categories>
+    <GalleryFlags>Public Preview</GalleryFlags>
+    <Badges><Badge Link="https://github.com/Wscats" ImgUri="https://img.shields.io/badge/Author-Eno Yao-blueviolet" Description="Eno Yao" /><Badge Link="https://marketplace.visualstudio.com/items?itemName=Wscats.eno" ImgUri="https://vsmarketplacebadge.apphb.com/version-short/wscats.eno.svg?color=blue&amp;style=flat-square" Description="VS Marketplace" /></Badges>
+    <Properties>
+      <Property Id="Microsoft.VisualStudio.Code.Engine" Value="^1.39.0" />
+      <Property Id="Microsoft.VisualStudio.Code.ExtensionDependencies" Value="" />
+      <Property Id="Microsoft.VisualStudio.Code.ExtensionPack" Value="" />
+      <Property Id="Microsoft.VisualStudio.Code.LocalizedLanguages" Value="" />
+      
+        <Property Id="Microsoft.VisualStudio.Services.Links.Source" Value="https://github.com/Wscats/compile-hero" />
+        <Property Id="Microsoft.VisualStudio.Services.Links.Getstarted" Value="https://github.com/Wscats/compile-hero" />
+        
+          <Property Id="Microsoft.VisualStudio.Services.Links.GitHub" Value="https://github.com/Wscats/compile-hero" />
+        
+      
+      <Property Id="Microsoft.VisualStudio.Services.Links.Support" Value="https://github.com/Wscats/compile-hero/issues/new" />
+      <Property Id="Microsoft.VisualStudio.Services.Links.Learn" Value="https://github.com/Wscats/compile-hero" />
+      <Property Id="Microsoft.VisualStudio.Services.Branding.Color" Value="#58bc58" />
+      <Property Id="Microsoft.VisualStudio.Services.Branding.Theme" Value="dark" />
+      <Property Id="Microsoft.VisualStudio.Services.GitHubFlavoredMarkdown" Value="true" />
+      
+      
+    </Properties>
+    <License>extension/LICENSE.txt</License>
+    <Icon>extension/logos/hero2.png</Icon>
+  </Metadata>
+  <Installation>
+    <InstallationTarget Id="Microsoft.VisualStudio.Code"/>
+  </Installation>
+  <Dependencies/>
+  <Assets>
+    <Asset Type="Microsoft.VisualStudio.Code.Manifest" Path="extension/package.json" Addressable="true" />
+    <Asset Type="Microsoft.VisualStudio.Services.Content.Details" Path="extension/README.md" Addressable="true" /><Asset Type="Microsoft.VisualStudio.Services.Content.Changelog" Path="extension/CHANGELOG.md" Addressable="true" /><Asset Type="Microsoft.VisualStudio.Services.Content.License" Path="extension/LICENSE.txt" Addressable="true" /><Asset Type="Microsoft.VisualStudio.Services.Icons.Default" Path="extension/logos/hero2.png" Addressable="true" />
+  </Assets>
+</PackageManifest>
