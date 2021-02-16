@@ -1,0 +1,17 @@
+build
+create-react-app
+express
+express-generator
+firebase-tools
+gatsby-cli
+geojson
+gulp-cli
+npm
+sass
+sequelize-cli
+serve
+topojson
+typeorm
+typescript
+webpack
+webpack-cli
