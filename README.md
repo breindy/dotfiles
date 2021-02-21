@@ -45,7 +45,6 @@ cd ~/.dotfiles && brew bundle
 ```
 
 ## TODO List
-
 - Learn how to use [`defaults`](https://macos-defaults.com/#%F0%9F%99%8B-what-s-a-defaults-command) to record and restore System Preferences and other macOS configurations.
 - [macos-defaults](https://macos-defaults.com/)
 - Organize these growing steps into multiple script files.
@@ -56,17 +55,26 @@ cd ~/.dotfiles && brew bundle
 - Integrate other cloud services into your Dotfiles process (Dropbox, Google Drive, etc.).
 - Find inspiration and examples in other Doffiles repositories at [dotfiles.github.io](https://dotfiles.github.io/).
 
+### Creating Symlinks from Dotfiles to Directory
+You must copy the original .dotfile into your repository and your computer stores the symlink to it.
+
+```zsh
+In ~ run: 
+    ln -s ~/.dotfiles/.configFileName ~/.configFileName
+```
+
+Make sure to double check if that symlink is created!
 
 ### Files
 1. **.gitconfig**
 - git configuration file
-- WIP
+- WIP: To add github aliases/shortcuts
 2. **.zshrc**
 - oh-my-zsh configuration file with customization on terminal and PATH
-- WIP
+- WIP: To separate aliases, paths, environment variables...
 3. **Brewfile**
 - Includes the applications installed using brew, brew cask
-- WIP
+- WIP: To beautify the file
 4. **.npm-global**
 - Global npm packages installed in my system, in order to export your own to a file run:
 `npm list --global --parseable --depth=0 | sed '1d' | awk '{gsub(/\/.*\//,"",$1); print}' > ~/.dotfiles/.npm-global`
@@ -75,7 +83,6 @@ cd ~/.dotfiles && brew bundle
 `xargs npm install --global < ~/.dotfiles/.npm-global`
 
 ### Checklist
-1. Fonts
-2. Brew casks
-3. MacOS Configuration
-4. Scripts to setup folders, directories
+1. Scripts to setup folders, directories
+2. Fresh install script file
+3. Clone install script file to install essential github repos

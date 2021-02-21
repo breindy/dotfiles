@@ -1,5 +1,7 @@
 tap "heroku/brew"
 tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/cask-fonts"
 tap "homebrew/core"
 tap "homebrew/services"
 tap "mongodb/brew"
@@ -40,3 +42,42 @@ brew "heroku/brew/heroku"
 brew "mongodb/brew/mongocli"
 # Theme Kit is a tool kit for manipulating shopify themes
 brew "shopify/shopify/themekit"
+#
+brew 'mas'
+brew 'mackup'
+brew 'gh'
+brew 'git'
+brew 'pkg-config'
+
+# Casks
+cask '1password'
+cask '1password-cli'
+cask 'discord'
+cask 'slack'
+cask 'spotify'
+cask 'flux'
+cask 'figma'
+cask 'insomnia'
+cask 'sublime-text'
+cask 'visual-studio-code'
+cask 'vlc'
+cask 'firefox'
+cask 'gpg-suite'
+cask 'insomnia'
+cask 'keka'
+cask 'the-unarchiver'
+cask 'typora'
+cask 'notion'
+cask 'handbrake'
+cask 'postico'
+cask 'mysqlworkbench'
+cask 'obs'
+cask 'anaconda'
+cask 'zoom'
+cask 'signal'
+cask 'mamp'
+cask 'free-download-manager'
+cask 'iterm2'
+
+# mas
+mas 'Keynote', id: 409183694
