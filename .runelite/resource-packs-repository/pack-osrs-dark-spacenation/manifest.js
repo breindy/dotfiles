@@ -1,0 +1,1 @@
+{"internalName":"pack-osrs-dark-spacenation","commit":"b869290a0bb22caaac3b8441e2f180ef0d22520b","displayName":"Dark theme (Spacenation Edition)","compatibleVersion":"1.2.0","author":"Levy","tags":["dark","black","blue","night","stealth","grey","mode"],"repo":"https://github.com/melkypie/resource-packs/tree/pack-osrs-dark-spacenation","hasIcon":true}

@@ -1,0 +1,1 @@
+{"internalName":"pack-osrs-dark-light","commit":"043631016072da290c758bef90aff2ecadad42a9","displayName":"Grey theme","compatibleVersion":"1.2.0","author":"Noedel","tags":["dark","black","night","stealth","grey","mode"],"repo":"https://github.com/melkypie/resource-packs/tree/pack-osrs-dark-light","hasIcon":true}
