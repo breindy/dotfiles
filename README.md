@@ -83,6 +83,8 @@ Make sure to double check if that symlink is created!
 `xargs npm install --global < ~/.dotfiles/.npm-global`
 
 ### Checklist
+0. SymLink Automation
 1. Scripts to setup folders, directories
 2. Fresh install script file
 3. Clone install script file to install essential github repos
+4. Look into Mackup

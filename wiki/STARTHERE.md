@@ -1,5 +1,11 @@
 ## Starting up from a freshly installed OS
 
+#### MacOS Defaults
+```zsh
+  Inside ~/.dotfiles repo, run
+./.macos
+```
+
 #### Setting up Dotfiles in directory and Running Brewfile
 > Upon starting on a new OS, we want to create our dotfiles once again so we can sync them with our dotfiles repo and use our brew to install the existing applications we had easily without the manual labor.
 1. Open terminal and install xcode (preq for Git and Homebrew)
