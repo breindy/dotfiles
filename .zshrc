@@ -213,3 +213,31 @@ alias repos-l='cd Documents/Repos/_Learning_';
 alias repos-p='cd Documents/Repos/Projects';
 alias repos-cap='cd Documents/Repos/codeAlongProjects';
 
+# ================= Starship Setup =================
+# Starship
+eval "$(starship init zsh)"
+
+# Active syntax highlighting
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Disable underline
+(( ${+ZSH_HIGHLIGHT_STYLES} )) || typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[path]='none'
+ZSH_HIGHLIGHT_STYLES[path_prefix]='none'
+
+# Active autosuggestions
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# EZA (better ls) dropin replacement for ls
+alias l='eza --icons'
+alias ls='eza --icons'
+alias ll='eza -lg --icons'
+alias la='eza -lag --icons'
+alias lt='eza -lTg --icons'
+alias lt1='eza -lTg --level=1 --icons'
+alias lt2='eza -lTg --level=2 --icons'
+alias lt3='eza -lTg --level=3 --icons'
+alias lta='eza -lTag --icons'
+alias lta1='eza -lTag --level=1 --icons'
+alias lta2='eza -lTag --level=2 --icons'
+alias lta3='eza -lTag --level=3 --icons'
