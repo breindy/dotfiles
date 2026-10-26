@@ -18,30 +18,30 @@ git clone https://github.com/breindy/dotfiles.git ~/.dotfiles
 ```
 
 
-3. Create symlinks in the Home directory to the real files in the repo.
+3. Run the install script. It is safe to re-run.
 
 ```zsh
-# There are better and less manual ways to do this;
-# investigate install scripts and bootstrapping tools.
-
-ln -s ~/.dotfiles/.zshrc ~/.zshrc
-ln -s ~/.dotfiles/.gitconfig ~/.gitconfig
+cd ~/.dotfiles && ./install.sh
 ```
 
+It will:
+- install Homebrew (if missing) and the terminal essentials in `Brewfile.terminal`
+  (starship, eza, zsh plugins, gh, WezTerm, CaskaydiaMono Nerd Font)
+- install oh-my-zsh
+- ask yes/no for each optional tool: pyenv, rbenv, volta, pnpm, uv
+- back up any existing files to `~/.dotfiles-backup/<timestamp>/` and symlink
+  `.zshenv`, `.zprofile`, `.zshrc`, `.wezterm.lua`, `.config/starship.toml`,
+  `.gitconfig`, `.gitmessage` into `$HOME`
 
-4. Install Homebrew, followed by the software listed in the Brewfile.
+Machine-specific settings go in untracked `~/.zshrc.local`, `~/.zprofile.local`
+and `~/.gitconfig.local`. Git commits use the GitHub noreply address from
+`.gitconfig`; override it per machine in `~/.gitconfig.local` if needed.
+
+
+4. (Optional) Install the full app list.
 
 ```zsh
-# These could also be in an install script.
-
-# Install Homebrew
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-# Then pass in the Brewfile location...
 brew bundle --file ~/.dotfiles/Brewfile
-
-# ...or move to the directory first.
-cd ~/.dotfiles && brew bundle
 ```
 
 ## TODO List

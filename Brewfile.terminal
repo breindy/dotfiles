@@ -1,0 +1,17 @@
+# Terminal / shell essentials -- installed by install.sh
+# Full app list lives in ./Brewfile
+
+# Prompt, ls replacement, zsh plugins
+brew "starship"
+brew "eza"
+brew "zsh-autosuggestions"
+brew "zsh-syntax-highlighting"
+brew "zsh-completions"
+
+# Git tooling
+brew "git"
+brew "gh"
+
+# Terminal emulator + Nerd Font used by .wezterm.lua and starship.toml
+cask "wezterm"
+cask "font-caskaydia-mono-nerd-font"

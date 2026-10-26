@@ -1,31 +1,25 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-# rbenv path
-export PATH="$HOME/.rbenv/shims:$PATH"
-
-# go path
-export PATH=$PATH:/usr/local/go/bin
+export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/breindy/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
-#mysql PATH
-export PATH=${PATH}:/usr/local/mysql/bin/
+# Homebrew (normally set by .zprofile; repeated for non-login shells)
+[[ -x /opt/homebrew/bin/brew ]] && eval "$(/opt/homebrew/bin/brew shellenv zsh)"
 
-#Mongo PATH
-export PATH=${PATH}:/usr/local/mongodb/bin
+# Extra completions -- must be on fpath before oh-my-zsh runs compinit
+[[ -n "$HOMEBREW_PREFIX" ]] && fpath=("$HOMEBREW_PREFIX/share/zsh-completions" $fpath)
+[[ -d "$HOME/.docker/completions" ]] && fpath=("$HOME/.docker/completions" $fpath)
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="powerlevel9k/powerlevel9k"
-POWERLEVEL9K_MODE='nerdfont-complete'
-DEFAULT_USER=`whoami`
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME="robbyrussell"
+
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
+# a theme from this variable instead of looking in $ZSH/themes/
 # If set to an empty array, this variable will have no effect.
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
@@ -36,17 +30,16 @@ DEFAULT_USER=`whoami`
 # Case-sensitive completion must be off. _ and - will be interchangeable.
 # HYPHEN_INSENSITIVE="true"
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to automatically update without prompting.
-# DISABLE_UPDATE_PROMPT="true"
+# Uncomment one of the following lines to change the auto-update behavior
+# zstyle ':omz:update' mode disabled  # disable automatic updates
+# zstyle ':omz:update' mode auto      # update automatically without asking
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
 # Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+# zstyle ':omz:update' frequency 13
 
 # Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS=true
+# DISABLE_MAGIC_FUNCTIONS="true"
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -58,6 +51,9 @@ DEFAULT_USER=`whoami`
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
 # COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
@@ -77,13 +73,13 @@ DEFAULT_USER=`whoami`
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
 # Which plugins would you like to load?
-# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions)
+plugins=(git)
 
-source $ZSH/oh-my-zsh.sh
+[[ -f "$ZSH/oh-my-zsh.sh" ]] && source "$ZSH/oh-my-zsh.sh"
 
 # User configuration
 
@@ -111,114 +107,31 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# Optional language tools -- each is only initialised if installed (see install.sh)
+if command -v rbenv > /dev/null; then eval "$(rbenv init - zsh)"; fi
+if command -v pyenv > /dev/null; then eval "$(pyenv init - zsh)"; fi
 
-function sp {
-  git branch > /dev/null 2>&1 || return 1
-  git config user.initials
-}
-
-prompt_breindy() {
-    local content='c{}de'
-    $1_prompt_segment "$0" "$2" "black" "white" "$content" "#"
-}
-
-POWERLEVEL9K_DIR_BACKGROUND='237'
-POWERLEVEL9K_CUSTOM_GIT_PAIR="echo \$(sp)"
-POWERLEVEL9K_CUSTOM_GIT_PAIR_BACKGROUND="clear"
-POWERLEVEL9K_CUSTOM_GIT_PAIR_FOREGROUND="blue"
-POWERLEVEL9K_CUSTOM_GIT_PAIR_ICON="\uf7af"
-POWERLEVEL9K_DIR_DEFAULT_BACKGROUND="clear"
-POWERLEVEL9K_DIR_DEFAULT_FOREGROUND="012"
-POWERLEVEL9K_DIR_FOREGROUND='010'
-POWERLEVEL9K_DIR_HOME_BACKGROUND="clear"
-POWERLEVEL9K_DIR_HOME_FOREGROUND="012"
-POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND="clear"
-POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND="012"
-POWERLEVEL9K_DIR_PATH_SEPARATOR="%F{008}/%F{cyan}"
-
-POWERLEVEL9K_DIR_ETC_BACKGROUND="clear"
-POWERLEVEL9K_ETC_ICON='%F{blue}\uf423'
-POWERLEVEL9K_DIR_WRITABLE_FORBIDDEN_FOREGROUND="red"
-POWERLEVEL9K_DIR_WRITABLE_FORBIDDEN_BACKGROUND="clear"
-
-POWERLEVEL9K_GO_ICON="\uf7b7"
-POWERLEVEL9K_GO_VERSION_BACKGROUND='clear'
-POWERLEVEL9K_GO_VERSION_FOREGROUND='081'
-
-POWERLEVEL9K_HOME_ICON="\ufb26"
-
-POWERLEVEL9K_INSTALLATION_PATH=$ANTIGEN_BUNDLES/bhilburn/powerlevel9k
-
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(breindy root_indicator dir dir_writable_joined custom_git_pair vcs_joined)
-POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR='%F{008}\uf460%F{008}'
-
-POWERLEVEL9K_LINUX_MANJARO_ICON="\uf312 "
-POWERLEVEL9K_LINUX_UBUNTU_ICON="\uf31b "
-
-POWERLEVEL9K_MODE='nerdfont-complete'
-
-POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""
-POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX=" \uf101 "
-
-POWERLEVEL9K_NVM_BACKGROUND='clear'
-POWERLEVEL9K_NVM_FOREGROUND='green'
-
-POWERLEVEL9K_OS_ICON_BACKGROUND='clear'
-POWERLEVEL9K_OS_ICON_FOREGROUND='cyan'
-
-POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status go_version nvm os_icon)
-POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR=''
-POWERLEVEL9K_RIGHT_SUBSEGMENT_SEPARATOR='%F{008}\uf104%F{008}'
-
-POWERLEVEL9K_SHORTEN_DELIMITER='%F{008} …%F{008}'
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=3
-POWERLEVEL9K_SHORTEN_STRATEGY="none"
-
-POWERLEVEL9K_STATUS_ERROR_BACKGROUND="clear"
-POWERLEVEL9K_STATUS_ERROR_FOREGROUND="001"
-POWERLEVEL9K_STATUS_OK_BACKGROUND="clear"
-POWERLEVEL9K_STATUS_BACKGROUND="clear"
-POWERLEVEL9K_CARRIAGE_RETURN_ICON="\uf071"
-
-POWERLEVEL9K_TIME_FORMAT="%D{%H:%M \uE868  %d.%m}"
-
-POWERLEVEL9K_VCS_CLEAN_BACKGROUND='clear'
-POWERLEVEL9K_VCS_CLEAN_FOREGROUND='green'
-POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='clear'
-POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='yellow'
-POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='clear'
-POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND='green'
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/breindy/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/breindy/opt/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/breindy/opt/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/breindy/opt/anaconda3/bin:$PATH"
-    fi
+if command -v volta > /dev/null; then
+  export VOLTA_HOME="$HOME/.volta"
+  export PATH="$VOLTA_HOME/bin:$PATH"
 fi
-unset __conda_setup
-# <<< conda initialize <<<
 
-alias repos='cd Documents/Repos';
-alias repos-l='cd Documents/Repos/_Learning_';
-alias repos-p='cd Documents/Repos/Projects';
-alias repos-cap='cd Documents/Repos/codeAlongProjects';
+# pnpm
+if command -v pnpm > /dev/null; then
+  export PNPM_HOME="$HOME/Library/pnpm"
+  case ":$PATH:" in
+    *":$PNPM_HOME:"*) ;;
+    *) export PATH="$PNPM_HOME:$PATH" ;;
+  esac
+fi
+# pnpm end
 
-# ================= Starship Setup =================
 # Starship
-eval "$(starship init zsh)"
+command -v starship > /dev/null && eval "$(starship init zsh)"
 
 # Active syntax highlighting
-source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[[ -f "$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]] &&
+  source "$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 # Disable underline
 (( ${+ZSH_HIGHLIGHT_STYLES} )) || typeset -A ZSH_HIGHLIGHT_STYLES
@@ -226,9 +139,11 @@ ZSH_HIGHLIGHT_STYLES[path]='none'
 ZSH_HIGHLIGHT_STYLES[path_prefix]='none'
 
 # Active autosuggestions
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+[[ -f "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]] &&
+  source "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
 # EZA (better ls) dropin replacement for ls
+if command -v eza > /dev/null; then
 alias l='eza --icons'
 alias ls='eza --icons'
 alias ll='eza -lg --icons'
@@ -241,3 +156,22 @@ alias lta='eza -lTag --icons'
 alias lta1='eza -lTag --level=1 --icons'
 alias lta2='eza -lTag --level=2 --icons'
 alias lta3='eza -lTag --level=3 --icons'
+fi
+
+
+[[ "$TERM_PROGRAM" == "kiro" ]] && command -v kiro > /dev/null && . "$(kiro --locate-shell-integration-path zsh)"
+
+# Added by Antigravity
+[[ -d "$HOME/.antigravity/antigravity/bin" ]] && export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
+
+# Vite+ bin (https://viteplus.dev)
+[[ -f "$HOME/.vite-plus/env" ]] && . "$HOME/.vite-plus/env"
+
+# opencode
+[[ -d "$HOME/.opencode/bin" ]] && export PATH="$HOME/.opencode/bin:$PATH"
+
+# Docker Desktop CLI
+[[ -d "$HOME/.docker/bin" ]] && export PATH="$PATH:$HOME/.docker/bin"
+
+# Machine-specific overrides (not tracked in the repo)
+[[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
