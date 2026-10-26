@@ -1,5 +1,5 @@
-# uv
-export PATH="/Users/breindy/.local/bin:$PATH"
+# uv / pipx / user-installed binaries
+export PATH="$HOME/.local/bin:$PATH"
 
 # Vite+ bin (https://viteplus.dev)
-. "$HOME/.vite-plus/env"
+[[ -f "$HOME/.vite-plus/env" ]] && . "$HOME/.vite-plus/env"

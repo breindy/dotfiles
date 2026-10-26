@@ -3,10 +3,13 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-export PATH=${PATH}:/usr/local/mysql/bin
 
-export PATH=/opt/homebrew/bin:$PATH
-export PATH=/opt/homebrew/sbin:$PATH
+# Homebrew (normally set by .zprofile; repeated for non-login shells)
+[[ -x /opt/homebrew/bin/brew ]] && eval "$(/opt/homebrew/bin/brew shellenv zsh)"
+
+# Extra completions -- must be on fpath before oh-my-zsh runs compinit
+[[ -n "$HOMEBREW_PREFIX" ]] && fpath=("$HOMEBREW_PREFIX/share/zsh-completions" $fpath)
+[[ -d "$HOME/.docker/completions" ]] && fpath=("$HOME/.docker/completions" $fpath)
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -76,7 +79,7 @@ ZSH_THEME="robbyrussell"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
 
-source $ZSH/oh-my-zsh.sh
+[[ -f "$ZSH/oh-my-zsh.sh" ]] && source "$ZSH/oh-my-zsh.sh"
 
 # User configuration
 
@@ -104,20 +107,31 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export C_INCLUDE_PATH=/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.8/Headers
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+# Optional language tools -- each is only initialised if installed (see install.sh)
+if command -v rbenv > /dev/null; then eval "$(rbenv init - zsh)"; fi
+if command -v pyenv > /dev/null; then eval "$(pyenv init - zsh)"; fi
 
-export DYLD_LIBRARY_PATH=/usr/local/mysql/lib
-PATH=$(pyenv root)/shims:$PATH
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
-export PATH=/usr/local/share/npm/bin:$PATH
+if command -v volta > /dev/null; then
+  export VOLTA_HOME="$HOME/.volta"
+  export PATH="$VOLTA_HOME/bin:$PATH"
+fi
+
+# pnpm
+if command -v pnpm > /dev/null; then
+  export PNPM_HOME="$HOME/Library/pnpm"
+  case ":$PATH:" in
+    *":$PNPM_HOME:"*) ;;
+    *) export PATH="$PNPM_HOME:$PATH" ;;
+  esac
+fi
+# pnpm end
 
 # Starship
-eval "$(starship init zsh)"
+command -v starship > /dev/null && eval "$(starship init zsh)"
 
 # Active syntax highlighting
-source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[[ -f "$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]] &&
+  source "$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 # Disable underline
 (( ${+ZSH_HIGHLIGHT_STYLES} )) || typeset -A ZSH_HIGHLIGHT_STYLES
@@ -125,9 +139,11 @@ ZSH_HIGHLIGHT_STYLES[path]='none'
 ZSH_HIGHLIGHT_STYLES[path_prefix]='none'
 
 # Active autosuggestions
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+[[ -f "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]] &&
+  source "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
 # EZA (better ls) dropin replacement for ls
+if command -v eza > /dev/null; then
 alias l='eza --icons'
 alias ls='eza --icons'
 alias ll='eza -lg --icons'
@@ -140,23 +156,22 @@ alias lta='eza -lTag --icons'
 alias lta1='eza -lTag --level=1 --icons'
 alias lta2='eza -lTag --level=2 --icons'
 alias lta3='eza -lTag --level=3 --icons'
+fi
 
 
-[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
+[[ "$TERM_PROGRAM" == "kiro" ]] && command -v kiro > /dev/null && . "$(kiro --locate-shell-integration-path zsh)"
 
 # Added by Antigravity
-export PATH="/Users/breindy/.antigravity/antigravity/bin:$PATH"
+[[ -d "$HOME/.antigravity/antigravity/bin" ]] && export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
 
-# pnpm
-export PNPM_HOME="/Users/breindy/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
 # Vite+ bin (https://viteplus.dev)
-. "$HOME/.vite-plus/env"
+[[ -f "$HOME/.vite-plus/env" ]] && . "$HOME/.vite-plus/env"
 
 # opencode
-export PATH=/Users/breindy/.opencode/bin:$PATH
-ß
+[[ -d "$HOME/.opencode/bin" ]] && export PATH="$HOME/.opencode/bin:$PATH"
+
+# Docker Desktop CLI
+[[ -d "$HOME/.docker/bin" ]] && export PATH="$PATH:$HOME/.docker/bin"
+
+# Machine-specific overrides (not tracked in the repo)
+[[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"

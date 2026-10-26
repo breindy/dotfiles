@@ -1,6 +1,10 @@
 # This is Git's per-user configuration file.
+# Identity uses the GitHub noreply address so personal email is never exposed in commits.
 [user]
 	name = breindy
 	email = 16421165+breindy@users.noreply.github.com
 [commit]
 	template = ~/.gitmessage
+# Machine-specific overrides (not tracked in the repo); included last so it wins
+[include]
+	path = ~/.gitconfig.local
