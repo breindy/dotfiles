@@ -48,6 +48,13 @@ fi
 info "Installing terminal essentials from Brewfile.terminal"
 brew bundle --file "$DOTFILES_DIR/Brewfile.terminal"
 
+# oh-my-zsh's compaudit refuses group-writable completion dirs ("Insecure
+# completion-dependent directories detected"); Homebrew creates them g+w
+info "Securing Homebrew completion directories"
+for dir in share share/zsh share/zsh/site-functions share/zsh-completions; do
+  [[ -d "$(brew --prefix)/$dir" ]] && chmod g-w,o-w "$(brew --prefix)/$dir"
+done
+
 # --- 2. oh-my-zsh -----------------------------------------------------------
 
 if [[ -d "$HOME/.oh-my-zsh" ]]; then
